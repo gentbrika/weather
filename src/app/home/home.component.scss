@@ -1,0 +1,35 @@
+.container{
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 50px;
+  padding-bottom: 50px;
+
+  .content{
+    .card{
+      width: 1000px;
+
+      .weather{
+        display: flex;
+
+        .first-part{
+          width: 50%;
+        }
+        .second-part{
+          width: 50%;
+        }
+      }
+    }
+
+    .search{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
+
+nz-select {
+    margin: 0 8px 10px 0;
+    min-width: 120px;
+}

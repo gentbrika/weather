@@ -1,0 +1,53 @@
+<div class="container">
+    <div class="content">
+        <div class="search">
+            <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Choose city" [(ngModel)]="city">
+                <nz-option nzLabel="{{city.name}}" nzValue="{{city.value}}" *ngFor="let city of cities"></nz-option>
+            </nz-select>
+
+            <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select Temperature Unit" [(ngModel)]="tempUnits">
+                <nz-option nzLabel="Celsius" nzValue="metric"></nz-option>
+                <nz-option nzLabel="Fahrenheit" nzValue="imperial"></nz-option>
+            </nz-select>
+
+            <button nz-button nzType="primary" (click)="search()" [disabled]="!city || !tempUnits">Search</button>
+        </div>
+
+        <div *ngIf="click < 1">
+            <p>Please select a city</p>
+        </div>
+
+        <nz-card [nzTitle]=datas.name *ngIf="click > 0" class="card">
+            <div class="weather">
+                <div class="first-part">
+                    <p><b>Current Temperature:</b> {{datas.main?.temp | number : '1.0-0'}} <span *ngIf="metric">°C</span> <span *ngIf="!metric">°F</span></p>
+                    <p><b>Feels Like:</b> {{datas.main?.feels_like | number : '1.0-0'}}<span *ngIf="metric">°C</span> <span *ngIf="!metric">°F</span></p>
+                    <p><b>Sunrise: </b>{{sunrise}}</p>
+                    <p><b>Wind:</b> {{datas.wind.speed}}m/s</p>
+                </div>
+                <div class="second-part">
+                    <img [src]="icon">
+                    <p><b>{{datas?.weather[0]?.main}}:</b> {{datas?.weather[0]?.description | titlecase}}</p>
+                    <p><b>Sunset:</b> {{sunset}}</p>
+                </div>
+            </div>
+        </nz-card>
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="weekly" *ngIf="click > 0">
+            <p *ngFor="let day of weeklyWeather">
+                {{day.temp?.eve | number : '1.0-0'}} <span *ngIf="metric">°C</span> <span *ngIf="!metric">°F</span>
+            </p>
+        </div>
+    </div>
+</div>
