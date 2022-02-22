@@ -26,6 +26,9 @@ export class HomeComponent implements OnInit {
   sunset:any;
   weeklyWeather:any = [{}];
   coordinates:any;
+  weekdayNames: any = []
+  weekdayNamesFormated: any = []
+  weekIcon:any = [];
 
   constructor( private http : HttpClient) { }
 
@@ -44,13 +47,29 @@ export class HomeComponent implements OnInit {
       this.coordinates = this.datas.coord;
       console.log(this.coordinates);
       this.icon = `http://openweathermap.org/img/wn/${this.datas.weather[0]?.icon}.png`;
+      
 
 
       this.http.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${this.coordinates.lat}&lon=${this.coordinates.lon}&APPID=ea6178aca4bd0de40bdb33abcb2bf135&units=${this.tempUnits}`).subscribe(res => {
-        console.log('RESSSSS',res);
         this.weeklyWeather = res;
+
+
+        
+        
         this.weeklyWeather = this.weeklyWeather.daily;
-        console.log(this.weeklyWeather);
+            for (var product of this.weeklyWeather) {
+              this.weekdayNames.push(product.dt)
+              console.log(product.weather[0].icon);
+              this.weekIcon.push(`http://openweathermap.org/img/wn/${product.weather[0].icon}.png`);
+              this.weekIcon = this.weekIcon.slice(Math.max(this.weekIcon.length - 8, 0))
+            }
+
+            for(var formated of this.weekdayNames ){
+              const weekDay = new Date(formated * 1000).toLocaleString("en-us", {
+                  weekday: "long"        
+                });
+                this.weekdayNamesFormated.push(weekDay)                
+            }            
       })
 
 
@@ -76,5 +95,7 @@ export class HomeComponent implements OnInit {
     
   }
 
+
+ 
 
 }

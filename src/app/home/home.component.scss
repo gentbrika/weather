@@ -20,11 +20,31 @@
         }
       }
     }
-
     .search{
       width: 100%;
       display: flex;
       justify-content: center;
+    }
+    .weekly{
+      display: flex;
+      justify-content: center;
+
+      .days{
+        margin-right: 20px;
+      }
+      .weekly-weather{
+        display: flex;
+
+        .icons{
+          display: flex;
+          flex-direction: column;
+
+          img{
+            width: 50px;
+            height: 35px;
+          }
+        }
+      }
     }
   }
 }
