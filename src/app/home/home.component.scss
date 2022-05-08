@@ -53,3 +53,14 @@ nz-select {
     margin: 0 8px 10px 0;
     min-width: 120px;
 }
+
+.weekly{
+  margin-top: 50px;
+  .weekly-card{
+    width: 100%;
+  }
+}
+
+::ng-deep .weekly .ant-card-body{
+  display: flex;
+}

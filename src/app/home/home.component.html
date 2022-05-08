@@ -35,28 +35,30 @@
 
 
         <div class="weekly" *ngIf="click > 0">
+            <nz-card nzTitle="Weekly Weather" *ngIf="click > 0" class="weekly-card">
 
-            <ng-container>
-                <div class="days">
-                    <p *ngFor="let weekday of weekdayNamesFormated | slice:0:8">
-                        {{weekday}}
-                    </p>
-                </div>
-            </ng-container>
+                <ng-container>
+                    <div class="days">
+                        <p *ngFor="let weekday of weekdayNamesFormated | slice:0:8">
+                            {{weekday}}
+                        </p>
+                    </div>
+                </ng-container>
 
-            <div class="weekly-weather">
-                <div class="temp">
-                    <ng-container *ngFor="let day of weeklyWeather">
-                            <p>{{day.temp?.eve | number : '1.0-0'}} <span *ngIf="metric">°C</span> <span *ngIf="!metric">°F</span></p>
-                    </ng-container>
-                </div>
+                <div class="weekly-weather">
+                    <div class="temp">
+                        <ng-container *ngFor="let day of weeklyWeather">
+                                <p>{{day.temp?.eve | number : '1.0-0'}} <span *ngIf="metric">°C</span> <span *ngIf="!metric">°F</span></p>
+                        </ng-container>
+                    </div>
 
-                <div class="icons">
-                    <ng-container *ngFor="let icon of weekIcon | slice:0:8">
-                            <img [src]="icon">
-                    </ng-container>
+                    <div class="icons">
+                        <ng-container *ngFor="let icon of weekIcon | slice:0:8">
+                                <img [src]="icon">
+                        </ng-container>
+                    </div>
                 </div>
-            </div>
+            </nz-card>
         </div>
     </div>
 </div>
